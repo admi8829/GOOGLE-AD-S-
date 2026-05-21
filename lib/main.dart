@@ -219,8 +219,6 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  int _totalHighScore = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -327,7 +325,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                   Text(
                                     '${category.questions.length} Challenging Questions',
                                     style: const TextStyle(
-                                      color: Colors.white74,
+                                      color: Colors.white70,
                                       fontSize: 13,
                                     ),
                                   ),
