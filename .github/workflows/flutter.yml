@@ -1,0 +1,54 @@
+name: Flutter CI
+
+# ኮዱ ወደ main branch push ሲደረግ ወይም pull request ሲከፈት ስራ ይጀምራል
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. ኮዱን ከ GitHub ያወርዳል
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Java setup ያደርጋል (ለ Android build አስፈላጊ ነው)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # 3. Flutter setup ያደርጋል
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0' # ወይም በ pubspec.yaml ላይ ያለህን version መጠቀም ትችላለህ
+          channel: 'stable'
+
+      # 4. ጥገኝነቶችን (Dependencies) ይጭናል
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 5. የኮድ ስህተት መኖሩን ይፈትሻል (Linting)
+      - name: Analyze project
+        run: flutter analyze
+
+      # 6. የሙከራ ኮዶችን (Tests) ካሉ ያሮጣል
+      - name: Run tests
+        run: flutter test
+
+      # 7. ለ Android የሚሆን APK build ያደርጋል (Debug version)
+      - name: Build APK
+        run: flutter build apk --debug
+
+      # 8. የተሰራውን APK ፋይል ወደ GitHub Artifacts ይጭናል
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
