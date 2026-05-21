@@ -1,0 +1,48 @@
+# Flutter gitignore rules
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Web Preview and AI Studio Web source folders (Explicitly excluded for GitHub Flutter Export)
+web_preview/
+src/
+index.html
+metadata.json
+package.json
+vite.config.ts
+tsconfig.json
+
+# Symbolication folder
+app.*.symbols
+
+# Obfuscation map
+app.*.map.json
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+.directory
+
+# Xcode
+.DS_Store
+Runner.xcworkspace
+xcuserdata/
+Pods/
+Podfile.lock
+
+# VS Code
+.vscode/
+
+# Node.js/Vite specific for AI Studio workspace
+node_modules/
+dist/
+coverage/
+*.log
+.env*
+!.env.example
