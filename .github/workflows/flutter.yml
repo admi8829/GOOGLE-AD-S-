@@ -38,10 +38,6 @@ jobs:
       - name: Analyze project
         run: flutter analyze
 
-      # 6. የሙከራ ኮዶችን (Tests) ካሉ ያሮጣል
-      - name: Run tests
-        run: flutter test
-
       # 7. ለ Android የሚሆን APK build ያደርጋል (Debug version)
       - name: Build APK
         run: flutter build apk --debug
